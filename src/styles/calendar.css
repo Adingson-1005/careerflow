@@ -1,0 +1,88 @@
+.calendar-wrapper {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.interview-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-value {
+  font-size: 15px;
+  color: #111827;
+  font-weight: 500;
+}
+
+.delete-btn {
+  padding: 10px 20px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+}
+
+/* FullCalendar overrides */
+.fc .fc-button {
+  background-color: #4f46e5 !important;
+  border-color: #4f46e5 !important;
+  font-size: 13px !important;
+}
+
+.fc .fc-button:hover {
+  background-color: #4338ca !important;
+  border-color: #4338ca !important;
+}
+
+.fc .fc-button-active {
+  background-color: #3730a3 !important;
+  border-color: #3730a3 !important;
+}
+
+.fc .fc-today-button {
+  background-color: #6b7280 !important;
+  border-color: #6b7280 !important;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: #eef2ff !important;
+}
+
+.fc .fc-col-header-cell {
+  background-color: #f9fafb;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+}
