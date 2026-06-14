@@ -13,7 +13,6 @@ export default function CalendarPage() {
   const [interviews, setInterviews] = useState([])
   const [applications, setApplications] = useState([])
   const [showModal, setShowModal] = useState(false)
-  const [selectedDate, setSelectedDate] = useState('')
   const [selectedInterview, setSelectedInterview] = useState(null)
   const [formData, setFormData] = useState({
     applicationId: '', date: '', type: 'Technical', notes: ''
@@ -37,9 +36,13 @@ export default function CalendarPage() {
   }
 
   const handleDateClick = (arg) => {
-    setSelectedDate(arg.dateStr + 'T09:00')
-    setFormData({ applicationId: '', date: arg.dateStr + 'T09:00', type: 'Technical', notes: '' })
     setSelectedInterview(null)
+    setFormData({
+      applicationId: '',
+      date: arg.dateStr + 'T09:00',
+      type: 'Technical',
+      notes: ''
+    })
     setShowModal(true)
   }
 
@@ -78,16 +81,16 @@ export default function CalendarPage() {
 
   const calendarEvents = interviews.map(i => ({
     id: i.id,
-    title: `${i.type} - ${i.application?.company || ''}`,
+    title: `${i.type} - ${i.application?.job?.employer?.company || i.application?.job?.employer?.name || ''}`,
     date: i.date,
-    backgroundColor: '#4f46e5',
-    borderColor: '#4338ca'
+    backgroundColor: '#2563eb',
+    borderColor: '#1d4ed8'
   }))
 
   return (
     <div className="page-content">
       <div className="page-header">
-        <div>
+        <div className="page-header-left">
           <h1>Calendar</h1>
           <p>Schedule and manage your interviews.</p>
         </div>
@@ -121,11 +124,16 @@ export default function CalendarPage() {
                 <div className="interview-details">
                   <div className="detail-row">
                     <span className="detail-label">Company</span>
-                    <span className="detail-value">{selectedInterview.application?.company}</span>
+                    <span className="detail-value">
+                      {selectedInterview.application?.job?.employer?.company ||
+                       selectedInterview.application?.job?.employer?.name}
+                    </span>
                   </div>
                   <div className="detail-row">
                     <span className="detail-label">Position</span>
-                    <span className="detail-value">{selectedInterview.application?.position}</span>
+                    <span className="detail-value">
+                      {selectedInterview.application?.job?.title}
+                    </span>
                   </div>
                   <div className="detail-row">
                     <span className="detail-label">Type</span>
@@ -160,11 +168,16 @@ export default function CalendarPage() {
                 <form onSubmit={handleSubmit} className="modal-form">
                   <div className="form-group">
                     <label>Application</label>
-                    <select name="applicationId" value={formData.applicationId} onChange={handleChange} required>
+                    <select
+                      name="applicationId"
+                      value={formData.applicationId}
+                      onChange={handleChange}
+                      required
+                    >
                       <option value="">Select application...</option>
                       {applications.map(app => (
                         <option key={app.id} value={app.id}>
-                          {app.company} — {app.position}
+                          {app.job?.employer?.company || app.job?.employer?.name} — {app.job?.title}
                         </option>
                       ))}
                     </select>
@@ -187,10 +200,18 @@ export default function CalendarPage() {
                   </div>
                   <div className="form-group">
                     <label>Notes (optional)</label>
-                    <textarea name="notes" value={formData.notes} onChange={handleChange} rows={3} placeholder="Preparation notes..." />
+                    <textarea
+                      name="notes"
+                      value={formData.notes}
+                      onChange={handleChange}
+                      rows={3}
+                      placeholder="Preparation notes..."
+                    />
                   </div>
                   <div className="modal-actions">
-                    <button type="button" onClick={() => setShowModal(false)} className="cancel-btn">Cancel</button>
+                    <button type="button" onClick={() => setShowModal(false)} className="cancel-btn">
+                      Cancel
+                    </button>
                     <button type="submit" className="submit-btn">Schedule</button>
                   </div>
                 </form>

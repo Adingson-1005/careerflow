@@ -12,21 +12,44 @@ model User {
   name      String
   email     String   @unique
   password  String
+  role      String   @default("JOB_SEEKER")
+  company   String?
+  bio       String?
+  location  String?
   createdAt DateTime @default(now())
 
+  jobPostings  JobPosting[]
   applications Application[]
   interviews   Interview[]
 }
 
+model JobPosting {
+  id           String   @id @default(cuid())
+  title        String
+  description  String
+  requirements String
+  location     String
+  type         String
+  salary       String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  employerId String
+  employer   User   @relation(fields: [employerId], references: [id])
+
+  applications Application[]
+}
+
 model Application {
-  id          String   @id @default(cuid())
-  company     String
-  position    String
-  status      String   @default("Wishlist")
-  jobLink     String?
-  notes       String?
-  appliedDate DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  status    String   @default("Applied")
+  coverNote String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  jobId  String
+  job    JobPosting @relation(fields: [jobId], references: [id])
 
   userId String
   user   User   @relation(fields: [userId], references: [id])

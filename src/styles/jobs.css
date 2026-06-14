@@ -1,0 +1,238 @@
+.job-detail-wrapper {
+  margin-top: 64px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 48px 40px;
+}
+
+.job-detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+.job-detail-back:hover {
+  text-decoration: underline;
+}
+
+.job-detail-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border: 1.5px solid #f1f5f9;
+  margin-bottom: 24px;
+}
+
+.job-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.job-detail-logo {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.job-detail-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.job-detail-company {
+  font-size: 16px;
+  color: #64748b;
+  margin-bottom: 16px;
+}
+
+.job-detail-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.job-detail-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 99px;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.job-detail-badge.green {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.job-detail-badge.gray {
+  background: #f8fafc;
+  color: #64748b;
+}
+
+.job-detail-divider {
+  border: none;
+  border-top: 1px solid #f1f5f9;
+  margin: 24px 0;
+}
+
+.job-detail-section {
+  margin-bottom: 28px;
+}
+
+.job-detail-section h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.job-detail-section p {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.job-detail-section ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.job-detail-section ul li {
+  font-size: 14px;
+  color: #475569;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.6;
+}
+
+.job-detail-section ul li::before {
+  content: '✓';
+  color: #2563eb;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Apply Card */
+.apply-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  border: 1.5px solid #f1f5f9;
+}
+
+.apply-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.apply-card p {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 20px;
+}
+
+.apply-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  resize: vertical;
+  color: #0f172a;
+  margin-bottom: 16px;
+  transition: border-color 0.2s;
+}
+
+.apply-textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.apply-btn {
+  width: 100%;
+  padding: 13px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.apply-btn:hover {
+  background: #1d4ed8;
+}
+
+.apply-btn:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+.apply-success {
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #16a34a;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.apply-login-prompt {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.apply-login-prompt a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.apply-login-prompt a:hover {
+  text-decoration: underline;
+}
+
+.apply-error {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  border: 1px solid #fecaca;
+  margin-bottom: 12px;
+}

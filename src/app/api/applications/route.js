@@ -10,6 +10,13 @@ export async function GET() {
 
     const applications = await prisma.application.findMany({
       where: { userId: session.user.id },
+      include: {
+        job: {
+          include: {
+            employer: { select: { name: true, company: true } }
+          }
+        }
+      },
       orderBy: { updatedAt: 'desc' }
     })
 
@@ -22,22 +29,32 @@ export async function GET() {
 export async function POST(request) {
   try {
     const session = await getServerSession(authOptions)
-    if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    if (!session || session.user.role !== 'JOB_SEEKER') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
 
-    const { company, position, status, jobLink, notes } = await request.json()
+    const { jobId, coverNote } = await request.json()
 
-    if (!company || !position) {
-      return NextResponse.json({ error: 'Company and position are required' }, { status: 400 })
+    const existing = await prisma.application.findFirst({
+      where: { jobId, userId: session.user.id }
+    })
+
+    if (existing) {
+      return NextResponse.json({ error: 'You have already applied to this job' }, { status: 400 })
     }
 
     const application = await prisma.application.create({
       data: {
-        company,
-        position,
-        status: status || 'Wishlist',
-        jobLink,
-        notes,
+        jobId,
+        coverNote,
         userId: session.user.id
+      },
+      include: {
+        job: {
+          include: {
+            employer: { select: { name: true, company: true } }
+          }
+        }
       }
     })
 

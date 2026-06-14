@@ -6,29 +6,27 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 import '@/styles/dashboard.css'
 
-export default function DashboardLayout({ children }) {
+export default function SeekerLayout({ children }) {
   const { data: session, status } = useSession()
   const router = useRouter()
   const pathname = usePathname()
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.push('/login')
+    if (status === 'unauthenticated') router.push('/login')
+    if (status === 'authenticated' && session?.user?.role !== 'JOB_SEEKER') {
+      router.push('/employer/dashboard')
     }
-  }, [status, router])
+  }, [status, session, router])
 
-  if (status === 'loading') {
-    return <div className="loading-screen">Loading...</div>
-  }
-
+  if (status === 'loading') return <div className="loading-screen">Loading...</div>
   if (!session) return null
 
   const navLinks = [
     { href: '/dashboard', label: 'Dashboard', icon: '📊' },
-    { href: '/applications', label: 'Applications', icon: '📋' },
-    { href: '/calendar', label: 'Calendar', icon: '📅' },
-    { href: '/analytics', label: 'Analytics', icon: '📈' },
-    { href: '/ai-prep', label: 'AI Interview Prep', icon: '🤖' },
+    { href: '/dashboard/applications', label: 'My Applications', icon: '📋' },
+    { href: '/dashboard/calendar', label: 'Calendar', icon: '📅' },
+    { href: '/dashboard/analytics', label: 'Analytics', icon: '📈' },
+    { href: '/dashboard/ai-prep', label: 'AI Interview Prep', icon: '🤖' },
   ]
 
   return (
@@ -36,15 +34,19 @@ export default function DashboardLayout({ children }) {
       <aside className="sidebar">
         <div className="sidebar-logo">CareerFlow</div>
         <div className="sidebar-user">
-          <div className="user-avatar">{session.user.name?.charAt(0).toUpperCase()}</div>
+          <div className="user-avatar">
+            {session.user.name?.charAt(0).toUpperCase()}
+          </div>
           <div className="user-info">
             <p className="user-name">{session.user.name}</p>
             <p className="user-email">{session.user.email}</p>
+            <span className="user-role-badge">Job Seeker</span>
           </div>
         </div>
 
         <nav className="sidebar-nav">
-          {navLinks.map((link) => (
+          <div className="sidebar-section-label">Menu</div>
+          {navLinks.map(link => (
             <Link
               key={link.href}
               href={link.href}
@@ -54,10 +56,15 @@ export default function DashboardLayout({ children }) {
               <span>{link.label}</span>
             </Link>
           ))}
+          <div className="sidebar-section-label">Explore</div>
+          <Link href="/" className="nav-link">
+            <span className="nav-icon">🔍</span>
+            <span>Browse Jobs</span>
+          </Link>
         </nav>
 
         <button className="signout-btn" onClick={() => signOut({ callbackUrl: '/login' })}>
-          🚪 Sign Out
+          🚪 <span>Sign Out</span>
         </button>
       </aside>
 

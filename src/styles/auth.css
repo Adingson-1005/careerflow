@@ -1,52 +1,99 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f4ff;
-}
-
-.auth-container {
+.auth-wrapper {
   min-height: 100vh;
+  display: flex;
+  background-color: #f8fafc;
+}
+
+.auth-left {
+  flex: 1;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  color: white;
+}
+
+.auth-left-logo {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 48px;
+  letter-spacing: -0.5px;
+}
+
+.auth-left h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.auth-left p {
+  font-size: 16px;
+  opacity: 0.8;
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+.auth-features {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.auth-feature-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  font-size: 16px;
+}
+
+.auth-right {
+  width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
 }
 
 .auth-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 40px;
   width: 100%;
-  max-width: 420px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
 }
 
-.auth-header {
-  text-align: center;
+.auth-card-header {
   margin-bottom: 32px;
 }
 
-.auth-logo {
-  font-size: 28px;
+.auth-card-header h2 {
+  font-size: 24px;
   font-weight: 700;
-  color: #4f46e5;
-  margin-bottom: 8px;
+  color: #0f172a;
+  margin-bottom: 6px;
 }
 
-.auth-subtitle {
-  color: #6b7280;
+.auth-card-header p {
   font-size: 14px;
+  color: #64748b;
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 .form-group {
@@ -56,29 +103,75 @@ body {
 }
 
 .form-group label {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   color: #374151;
 }
 
-.form-group input {
-  padding: 12px 16px;
-  border: 1px solid #e5e7eb;
+.form-group input,
+.form-group select {
+  padding: 11px 14px;
+  border: 1.5px solid #e2e8f0;
   border-radius: 8px;
   font-size: 14px;
   outline: none;
   transition: border-color 0.2s;
-  color: #111827;
+  color: #0f172a;
+  background: white;
+  font-family: inherit;
 }
 
-.form-group input:focus {
-  border-color: #4f46e5;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.role-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.role-option {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.role-option:hover {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.role-option.selected {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.role-option-icon {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.role-option-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.role-option-desc {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
 }
 
 .auth-btn {
   padding: 12px;
-  background-color: #4f46e5;
+  background-color: #2563eb;
   color: white;
   border: none;
   border-radius: 8px;
@@ -90,18 +183,18 @@ body {
 }
 
 .auth-btn:hover {
-  background-color: #4338ca;
+  background-color: #1d4ed8;
 }
 
 .auth-btn:disabled {
-  background-color: #a5b4fc;
+  background-color: #93c5fd;
   cursor: not-allowed;
 }
 
 .auth-error {
   background-color: #fef2f2;
   color: #dc2626;
-  padding: 12px;
+  padding: 10px 14px;
   border-radius: 8px;
   font-size: 13px;
   border: 1px solid #fecaca;
@@ -109,14 +202,14 @@ body {
 
 .auth-switch {
   text-align: center;
-  margin-top: 24px;
+  margin-top: 20px;
   font-size: 14px;
-  color: #6b7280;
+  color: #64748b;
 }
 
 .auth-switch a {
-  color: #4f46e5;
-  font-weight: 500;
+  color: #2563eb;
+  font-weight: 600;
   text-decoration: none;
 }
 

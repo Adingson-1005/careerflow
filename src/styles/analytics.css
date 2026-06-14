@@ -1,0 +1,84 @@
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.chart-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  border: 1.5px solid #f1f5f9;
+  margin-bottom: 16px;
+}
+
+.chart-card h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+.empty-chart {
+  text-align: center;
+  padding: 40px 0;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.status-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 110px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-name {
+  font-size: 13px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.status-bar-wrapper {
+  flex: 1;
+  background-color: #f1f5f9;
+  border-radius: 99px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.status-bar {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.3s ease;
+  min-width: 4px;
+}
+
+.status-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+  min-width: 24px;
+  text-align: right;
+}

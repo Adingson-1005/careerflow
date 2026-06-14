@@ -4,20 +4,39 @@ CREATE TABLE "User" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "role" TEXT NOT NULL DEFAULT 'JOB_SEEKER',
+    "company" TEXT,
+    "bio" TEXT,
+    "location" TEXT,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- CreateTable
+CREATE TABLE "JobPosting" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "title" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "requirements" TEXT NOT NULL,
+    "location" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
+    "salary" TEXT,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "employerId" TEXT NOT NULL,
+    CONSTRAINT "JobPosting_employerId_fkey" FOREIGN KEY ("employerId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
 CREATE TABLE "Application" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "company" TEXT NOT NULL,
-    "position" TEXT NOT NULL,
-    "status" TEXT NOT NULL DEFAULT 'Wishlist',
-    "jobLink" TEXT,
-    "notes" TEXT,
-    "appliedDate" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "status" TEXT NOT NULL DEFAULT 'Applied',
+    "coverNote" TEXT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
+    "jobId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
+    CONSTRAINT "Application_jobId_fkey" FOREIGN KEY ("jobId") REFERENCES "JobPosting" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "Application_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 

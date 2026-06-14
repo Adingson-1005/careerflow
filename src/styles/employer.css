@@ -1,0 +1,280 @@
+.employer-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.employer-main {
+  margin-left: 260px;
+  flex: 1;
+  padding: 32px;
+  min-width: 0;
+  overflow-x: hidden;
+  width: calc(100% - 260px);
+}
+
+/* Table */
+.table-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  border: 1.5px solid #f1f5f9;
+  overflow: hidden;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f8fafc;
+}
+
+th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #0f172a;
+  border-bottom: 1px solid #f8fafc;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: #f8fafc;
+}
+
+.table-empty {
+  text-align: center;
+  padding: 48px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* Badges */
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+.badge-green {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.badge-gray {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.badge-blue {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.badge-yellow {
+  background: #fefce8;
+  color: #ca8a04;
+}
+
+.badge-purple {
+  background: #faf5ff;
+  color: #7c3aed;
+}
+
+.badge-red {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  font-family: inherit;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-sm-primary {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.btn-sm-primary:hover {
+  background: #dbeafe;
+}
+
+.btn-sm-danger {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.btn-sm-danger:hover {
+  background: #fee2e2;
+}
+
+.btn-sm-gray {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.btn-sm-gray:hover {
+  background: #e2e8f0;
+}
+
+/* Job form */
+.form-card {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  border: 1.5px solid #f1f5f9;
+  max-width: 700px;
+}
+
+.form-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 24px;
+}
+
+.job-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.job-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.job-form label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.job-form input,
+.job-form select,
+.job-form textarea {
+  padding: 11px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  color: #0f172a;
+  font-family: inherit;
+}
+
+.job-form input:focus,
+.job-form select:focus,
+.job-form textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.job-form textarea {
+  resize: vertical;
+}
+
+.form-hint {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Applicant card */
+.applicant-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  border: 1.5px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.applicant-info h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.applicant-info p {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.applicant-cover {
+  font-size: 13px;
+  color: #475569;
+  margin-top: 8px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 3px solid #2563eb;
+}
+
+.applicants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.status-update-select {
+  padding: 6px 10px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #374151;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.status-update-select:focus {
+  border-color: #2563eb;
+}

@@ -4,16 +4,17 @@ import prisma from '@/lib/prisma'
 
 export async function POST(request) {
   try {
-    const { name, email, password } = await request.json()
+    const { name, email, password, role, company } = await request.json()
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !role) {
       return NextResponse.json({ error: 'All fields are required' }, { status: 400 })
     }
 
-    const existingUser = await prisma.user.findUnique({
-      where: { email }
-    })
+    if (role === 'EMPLOYER' && !company) {
+      return NextResponse.json({ error: 'Company name is required for employers' }, { status: 400 })
+    }
 
+    const existingUser = await prisma.user.findUnique({ where: { email } })
     if (existingUser) {
       return NextResponse.json({ error: 'Email already exists' }, { status: 400 })
     }
@@ -21,7 +22,13 @@ export async function POST(request) {
     const hashedPassword = await bcrypt.hash(password, 12)
 
     const user = await prisma.user.create({
-      data: { name, email, password: hashedPassword }
+      data: {
+        name,
+        email,
+        password: hashedPassword,
+        role,
+        company: role === 'EMPLOYER' ? company : null
+      }
     })
 
     return NextResponse.json({ message: 'User created successfully', userId: user.id }, { status: 201 })

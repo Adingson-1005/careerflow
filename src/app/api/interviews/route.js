@@ -10,7 +10,17 @@ export async function GET() {
 
     const interviews = await prisma.interview.findMany({
       where: { userId: session.user.id },
-      include: { application: true },
+      include: {
+        application: {
+          include: {
+            job: {
+              include: {
+                employer: { select: { name: true, company: true } }
+              }
+            }
+          }
+        }
+      },
       orderBy: { date: 'asc' }
     })
 
@@ -39,7 +49,17 @@ export async function POST(request) {
         notes,
         userId: session.user.id
       },
-      include: { application: true }
+      include: {
+        application: {
+          include: {
+            job: {
+              include: {
+                employer: { select: { name: true, company: true } }
+              }
+            }
+          }
+        }
+      }
     })
 
     return NextResponse.json(interview, { status: 201 })

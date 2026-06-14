@@ -3,7 +3,7 @@ import SessionWrapper from '@/components/SessionWrapper'
 
 export const metadata = {
   title: 'CareerFlow',
-  description: 'Intelligent Job Application Tracking Platform',
+  description: 'Find your next opportunity',
 }
 
 export default function RootLayout({ children }) {
