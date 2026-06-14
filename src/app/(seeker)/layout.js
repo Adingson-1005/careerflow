@@ -12,11 +12,11 @@ export default function SeekerLayout({ children }) {
   const pathname = usePathname()
 
   useEffect(() => {
-    if (status === 'unauthenticated') router.push('/login')
-    if (status === 'authenticated' && session?.user?.role !== 'JOB_SEEKER') {
-      router.push('/employer/dashboard')
-    }
-  }, [status, session, router])
+  if (status === 'unauthenticated') router.replace('/')
+  if (status === 'authenticated' && session?.user?.role !== 'JOB_SEEKER') {
+    router.replace('/employer/dashboard')
+  }
+}, [status, session, router])
 
   if (status === 'loading') return <div className="loading-screen">Loading...</div>
   if (!session) return null
@@ -63,7 +63,7 @@ export default function SeekerLayout({ children }) {
           </Link>
         </nav>
 
-        <button className="signout-btn" onClick={() => signOut({ callbackUrl: '/login' })}>
+        <button className="signout-btn" onClick={() => signOut({ callbackUrl: '/' })}>
           🚪 <span>Sign Out</span>
         </button>
       </aside>
