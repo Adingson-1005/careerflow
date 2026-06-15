@@ -30,7 +30,10 @@ export default function PostJobPage() {
       const res = await fetch('/api/jobs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          salary: formData.salary ? parseFloat(formData.salary) : null
+        })
       })
 
       const data = await res.json()
@@ -98,13 +101,20 @@ export default function PostJobPage() {
           </div>
 
           <div className="form-group">
-            <label>Salary (optional)</label>
+            <label>Monthly Salary in ₱ (optional)</label>
             <input
               name="salary"
+              type="number"
+              min="0"
               value={formData.salary}
               onChange={handleChange}
-              placeholder="e.g. ₱25,000 - ₱35,000/month"
+              placeholder="e.g. 25000"
             />
+            {formData.salary && (
+              <span className="form-hint">
+                Display: ₱{Number(formData.salary).toLocaleString()}/mo
+              </span>
+            )}
           </div>
 
           <div className="form-group">

@@ -12,7 +12,6 @@ model User {
   name      String
   email     String   @unique
   password  String
-  role      String   @default("JOB_SEEKER")
   company   String?
   bio       String?
   location  String?
@@ -30,7 +29,7 @@ model JobPosting {
   requirements String
   location     String
   type         String
-  salary       String?
+  salary       Float?
   isActive     Boolean  @default(true)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt

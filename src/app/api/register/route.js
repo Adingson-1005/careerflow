@@ -4,14 +4,10 @@ import prisma from '@/lib/prisma'
 
 export async function POST(request) {
   try {
-    const { name, email, password, role, company } = await request.json()
+    const { name, email, password, company } = await request.json()
 
-    if (!name || !email || !password || !role) {
+    if (!name || !email || !password) {
       return NextResponse.json({ error: 'All fields are required' }, { status: 400 })
-    }
-
-    if (role === 'EMPLOYER' && !company) {
-      return NextResponse.json({ error: 'Company name is required for employers' }, { status: 400 })
     }
 
     const existingUser = await prisma.user.findUnique({ where: { email } })
@@ -26,8 +22,7 @@ export async function POST(request) {
         name,
         email,
         password: hashedPassword,
-        role,
-        company: role === 'EMPLOYER' ? company : null
+        company: company || null
       }
     })
 

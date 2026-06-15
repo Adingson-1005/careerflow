@@ -8,7 +8,6 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url)
     const search = searchParams.get('search') || ''
     const type = searchParams.get('type') || ''
-    const location = searchParams.get('location') || ''
 
     const jobs = await prisma.jobPosting.findMany({
       where: {
@@ -20,8 +19,7 @@ export async function GET(request) {
               { description: { contains: search } }
             ]
           } : {},
-          type ? { type } : {},
-          location ? { location: { contains: location } } : {}
+          type ? { type } : {}
         ]
       },
       include: {
@@ -40,7 +38,7 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const session = await getServerSession(authOptions)
-    if (!session || session.user.role !== 'EMPLOYER') {
+    if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
@@ -57,7 +55,7 @@ export async function POST(request) {
         requirements,
         location,
         type,
-        salary,
+        salary: salary ? parseFloat(salary) : null,
         employerId: session.user.id
       }
     })

@@ -12,22 +12,20 @@ export default function SeekerLayout({ children }) {
   const pathname = usePathname()
 
   useEffect(() => {
-  if (status === 'unauthenticated') router.replace('/')
-  if (status === 'authenticated' && session?.user?.role !== 'JOB_SEEKER') {
-    router.replace('/employer/dashboard')
-  }
-}, [status, session, router])
+    if (status === 'unauthenticated') router.replace('/')
+  }, [status, router])
 
   if (status === 'loading') return <div className="loading-screen">Loading...</div>
   if (!session) return null
 
-  const navLinks = [
-    { href: '/dashboard', label: 'Dashboard', icon: '📊' },
-    { href: '/dashboard/applications', label: 'My Applications', icon: '📋' },
-    { href: '/dashboard/calendar', label: 'Calendar', icon: '📅' },
-    { href: '/dashboard/analytics', label: 'Analytics', icon: '📈' },
-    { href: '/dashboard/ai-prep', label: 'AI Interview Prep', icon: '🤖' },
-  ]
+ const navLinks = [
+  { href: '/dashboard', label: 'Dashboard', icon: '📊' },
+  { href: '/dashboard/browse', label: 'Browse Jobs', icon: '🔍' },
+  { href: '/dashboard/applications', label: 'My Applications', icon: '📋' },
+  { href: '/dashboard/calendar', label: 'Calendar', icon: '📅' },
+  { href: '/dashboard/analytics', label: 'Analytics', icon: '📈' },
+  { href: '/dashboard/ai-prep', label: 'AI Interview Prep', icon: '🤖' },
+]
 
   return (
     <div className="dashboard-wrapper">
@@ -56,16 +54,23 @@ export default function SeekerLayout({ children }) {
               <span>{link.label}</span>
             </Link>
           ))}
-          <div className="sidebar-section-label">Explore</div>
-          <Link href="/" className="nav-link">
-            <span className="nav-icon">🔍</span>
-            <span>Browse Jobs</span>
-          </Link>
         </nav>
 
-        <button className="signout-btn" onClick={() => signOut({ callbackUrl: '/' })}>
-          🚪 <span>Sign Out</span>
-        </button>
+        <div className="sidebar-bottom">
+          <button
+            className="mode-switch-btn"
+            onClick={() => router.push('/employer/dashboard')}
+          >
+            <span>🏢</span>
+            <span>Switch to Employer Mode</span>
+          </button>
+          <button
+            className="signout-btn"
+            onClick={() => signOut({ callbackUrl: '/' })}
+          >
+            🚪 <span>Sign Out</span>
+          </button>
+        </div>
       </aside>
 
       <main className="dashboard-main">

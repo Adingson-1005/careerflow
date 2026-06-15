@@ -31,13 +31,7 @@ export default function LoginPage() {
       setError('Invalid email or password')
       setLoading(false)
     } else {
-      const res = await fetch('/api/auth/session')
-      const session = await res.json()
-      if (session?.user?.role === 'EMPLOYER') {
-        router.push('/employer/dashboard')
-      } else {
-        router.push('/dashboard')
-      }
+      router.push('/dashboard')
     }
   }
 

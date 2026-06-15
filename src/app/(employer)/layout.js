@@ -13,12 +13,8 @@ export default function EmployerLayout({ children }) {
   const pathname = usePathname()
 
   useEffect(() => {
-  if (status === 'unauthenticated') router.replace('/')
-  if (status === 'authenticated' && session?.user?.role !== 'EMPLOYER') {
-    router.replace('/dashboard')
-  }
-}, [status, session, router])
-
+    if (status === 'unauthenticated') router.replace('/')
+  }, [status, router])
 
   if (status === 'loading') return <div className="loading-screen">Loading...</div>
   if (!session) return null
@@ -41,7 +37,7 @@ export default function EmployerLayout({ children }) {
           <div className="user-info">
             <p className="user-name">{session.user.name}</p>
             <p className="user-email">{session.user.company || session.user.email}</p>
-            <span className="user-role-badge">Employer</span>
+            <span className="user-role-badge" style={{ background: 'rgba(16,185,129,0.2)', color: '#6ee7b7' }}>Employer</span>
           </div>
         </div>
 
@@ -64,9 +60,21 @@ export default function EmployerLayout({ children }) {
           </Link>
         </nav>
 
-        <button className="signout-btn" onClick={() => signOut({ callbackUrl: '/' })}>
-          🚪 <span>Sign Out</span>
-        </button>
+        <div className="sidebar-bottom">
+          <button
+            className="mode-switch-btn"
+            onClick={() => router.push('/dashboard')}
+          >
+            <span>💼</span>
+            <span>Switch to Job Seeker Mode</span>
+          </button>
+          <button
+            className="signout-btn"
+            onClick={() => signOut({ callbackUrl: '/' })}
+          >
+            🚪 <span>Sign Out</span>
+          </button>
+        </div>
       </aside>
 
       <main className="employer-main">

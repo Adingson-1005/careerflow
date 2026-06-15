@@ -29,7 +29,7 @@ export async function GET() {
 export async function POST(request) {
   try {
     const session = await getServerSession(authOptions)
-    if (!session || session.user.role !== 'JOB_SEEKER') {
+    if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
