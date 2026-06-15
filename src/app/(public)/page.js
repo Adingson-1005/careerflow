@@ -21,7 +21,6 @@ export default function LandingPage() {
           <p>The all-in-one platform for job seekers and employers. Track applications, prepare for interviews with AI, and land your next opportunity.</p>
           <div className="landing-cta">
             <Link href="/register" className="cta-primary">Get Started — It's Free</Link>
-            <Link href="/login" className="cta-secondary">Sign In →</Link>
           </div>
         </div>
         <div className="landing-hero-visual">

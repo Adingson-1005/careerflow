@@ -60,7 +60,7 @@ export default function SeekerDashboard() {
           <h1>Welcome back, {session?.user?.name} 👋</h1>
           <p>Here's your job search overview.</p>
         </div>
-        <Link href="/" className="primary-btn">Browse Jobs</Link>
+        <Link href="/job-board" className="primary-btn">Browse Jobs</Link>
       </div>
 
       <div className="stats-grid">
@@ -125,7 +125,7 @@ export default function SeekerDashboard() {
           ) : (
             <div className="empty-state">
               <p>No applications yet.</p>
-              <Link href="/">Browse jobs to apply →</Link>
+              <Link href="/job-board">Browse jobs to apply →</Link>
             </div>
           )}
         </div>

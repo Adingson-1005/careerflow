@@ -54,10 +54,10 @@ export default function EmployerLayout({ children }) {
             </Link>
           ))}
           <div className="sidebar-section-label">Explore</div>
-          <Link href="/" className="nav-link">
-            <span className="nav-icon">🌐</span>
-            <span>View Job Board</span>
-          </Link>
+<Link href="/job-board" className="nav-link">
+  <span className="nav-icon">🌐</span>
+  <span>View Job Board</span>
+</Link>
         </nav>
 
         <div className="sidebar-bottom">

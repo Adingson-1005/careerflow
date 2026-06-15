@@ -20,7 +20,7 @@ export default function SeekerLayout({ children }) {
 
  const navLinks = [
   { href: '/dashboard', label: 'Dashboard', icon: '📊' },
-  { href: '/dashboard/browse', label: 'Browse Jobs', icon: '🔍' },
+  { href: '/job-board', label: 'Browse Jobs', icon: '🔍' },
   { href: '/dashboard/applications', label: 'My Applications', icon: '📋' },
   { href: '/dashboard/calendar', label: 'Calendar', icon: '📅' },
   { href: '/dashboard/analytics', label: 'Analytics', icon: '📈' },
